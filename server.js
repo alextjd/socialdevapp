@@ -1,6 +1,10 @@
 const express = require("express");
 const moongoose = require("mongoose"); // Communication interface with MongoDB
 
+const users = require("./routes/api/users");
+const profile = require("./routes/api/profile");
+const posts = require("./routes/api/posts");
+
 // Initialize espress
 const app = express();
 
@@ -21,6 +25,13 @@ moongoose
 app.get("/", (req, res) => {
   res.send("Hello there");
 });
+
+// User routes
+app.use("/api/users", users);
+// Profile routes
+app.use("/api/profile", profile);
+// Posts routes
+app.use("/api/posts", posts);
 
 // Set the port. First element for Heroku
 const port = process.env.PORT || 5000;
