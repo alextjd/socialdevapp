@@ -1,5 +1,5 @@
 // Define objects and map them to MongoDB
-const moongoose = require("moongoose");
+const moongoose = require("mongoose");
 const Schema = moongoose.Schema;
 
 // Create Schema
@@ -17,8 +17,7 @@ const UserSchema = new Schema({
     required: true
   },
   img: {
-    type: String,
-    required: true
+    type: String
   },
   date: {
     type: Date,
@@ -26,4 +25,4 @@ const UserSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("users", UserSchema);
+module.exports = moongoose.model("users", UserSchema);
