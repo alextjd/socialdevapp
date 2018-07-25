@@ -1,6 +1,6 @@
 const express = require("express");
 const moongoose = require("mongoose"); // Communication interface with MongoDB
-const bodyParser = require("body-parser"); // Necessary to read HTTP POST data
+const bodyParser = require("body-parser"); // Necessary to read HTTP request data
 
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
@@ -9,7 +9,7 @@ const posts = require("./routes/api/posts");
 // Initialize espress
 const app = express();
 
-// Setup the app to be able to read HTTP POST data
+// Setup the app to be able to read HTTP request data
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
