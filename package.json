@@ -4,8 +4,8 @@
   "description": "Social network in a mern course.",
   "main": "server.js",
   "scripts": {
-    "start" : "node server.js",
-    "server" : "nodemon server.js"
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "author": "alextjd",
   "license": "MIT",
