@@ -49,13 +49,31 @@ router.post("/register", (req, res) => {
   });
 });
 
-// @route     GET /api/users/register
-// @desc      Try to grab the avatar from github
+// @route     GET /api/users/login
+// @desc      Login for registered users
 // @access    Public
-// router.get("/avatar", (req, res) => {
-//   fetch("https://api.github.com/users/alextjd")
-//     .then(res => res.json())
-//     .then(body => console.log(body.avatar_url));
-// });
+router.post("/login", (req, res) => {
+  const email = req.body.email;
+  const pwd = req.body.pwd;
+  User.findOne({ email: email }).then(user => {
+    // Check if the email exists in the db
+    if (!user) {
+      return res
+        .status(401)
+        .json({ msg: "No account linked to the email provided" });
+    }
+    // Check the passwords
+    bcryp.compare(pwd, user.pwd, (err, match) => {
+      if (err) throw err;
+      if (match) {
+        res.json({ msg: "Success." });
+      } else {
+        res.status(401).json({ msg: "Incorrect password" });
+      }
+    });
+  });
+});
+
+// TODO: create method to use the github avatar in this app
 
 module.exports = router;
