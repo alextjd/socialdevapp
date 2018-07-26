@@ -12,13 +12,6 @@ const router = express.Router();
 // Load User model
 const User = require("../../models/User");
 
-// @route     GET /api/users/test
-// @desc      Tests the post route
-// @access    Public
-router.get("/test", (req, res) => {
-  res.json({ msg: "All went fine in USERS" });
-});
-
 // @route     GET /api/users/register
 // @desc      Register a new user
 // @access    Public
@@ -91,7 +84,7 @@ router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    res.json({ msg: "Yayyy" });
+    res.json(req.user);
   }
 );
 
