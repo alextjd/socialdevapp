@@ -1,6 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const bcryp = require("bcryptjs");
+const passport = require("passport");
 
 // Get the secret key for the token
 const secret = require("../../config/keys").secret;
@@ -13,9 +14,9 @@ const User = require("../../models/User");
 
 // @route     GET /api/users/test
 // @desc      Tests the post route
-// @access    Private
+// @access    Public
 router.get("/test", (req, res) => {
-  res.json({ msg: "All went fine in USERS." });
+  res.json({ msg: "All went fine in USERS" });
 });
 
 // @route     GET /api/users/register
@@ -82,6 +83,17 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+// @route     GET /api/users/current
+// @desc      Return the user of the current token
+// @access    Private
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({ msg: "Yayyy" });
+  }
+);
 
 // TODO: create method to use the github avatar in this app
 
