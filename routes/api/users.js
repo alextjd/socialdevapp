@@ -1,6 +1,9 @@
 const express = require("express");
-const fetch = require("node-fetch");
+const jwt = require("jsonwebtoken");
 const bcryp = require("bcryptjs");
+
+// Get the secret key for the token
+const secret = require("../../config/keys").secret;
 
 // Load the express router
 const router = express.Router();
@@ -66,7 +69,13 @@ router.post("/login", (req, res) => {
     bcryp.compare(pwd, user.pwd, (err, match) => {
       if (err) throw err;
       if (match) {
-        res.json({ msg: "Success." });
+        // Prepare the payload
+        const payload = { id: user.id, name: user.name };
+        // Generate and return the token
+        jwt.sign(payload, secret, { expiresIn: "12h" }, (err, token) => {
+          if (err) throw err;
+          res.json({ token: `Bearer ${token}`, msg: "Correct login" });
+        });
       } else {
         res.status(401).json({ msg: "Incorrect password" });
       }
