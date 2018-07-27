@@ -1,5 +1,5 @@
 const express = require("express");
-const moongoose = require("mongoose"); // Communication interface with MongoDB
+const mongoose = require("mongoose"); // Communication interface with MongoDB
 const bodyParser = require("body-parser"); // Necessary to read HTTP request data
 const passport = require("passport");
 
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Connect with MongoDB
-moongoose
+mongoose
     .connect(db)
     .then(() => {
         console.log("MongoDB connected");

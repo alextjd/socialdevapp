@@ -1,6 +1,6 @@
 // Define objects and map them to MongoDB
-const moongoose = require("mongoose");
-const Schema = moongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = moongose.Schema;
 
 // Create Schema
 const ProfileSchema = new Schema({
@@ -118,4 +118,4 @@ const ProfileSchema = new Schema({
     }
 });
 
-module.exports = moongoose.model("profile", ProfileSchema);
+module.exports = mongoose.model("profile", ProfileSchema);

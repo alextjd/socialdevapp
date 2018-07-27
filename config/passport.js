@@ -1,9 +1,9 @@
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
-const moongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 // Import the users schema
-const User = moongoose.model("users");
+const User = mongoose.model("users");
 // Import the keys
 const keys = require("../config/keys");
 

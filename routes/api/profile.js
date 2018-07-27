@@ -1,4 +1,7 @@
 const express = require("express");
+const mongoose = require("mongoose");
+
+// Load the express router
 const router = express.Router();
 
 // @route     GET /api/profile/test
