@@ -59,7 +59,12 @@ router.post("/register", (req, res) => {
 // @desc      Login for registered users
 // @access    Public
 router.post("/login", (req, res) => {
-    const info = req.body;
+    const info = Object.assign({}, req.body);
+    // Validate the input info
+    const input_check = validation.validateLogin(info);
+    if (!input_check.valid) {
+        return res.status(400).json(input_check.errors);
+    }
     User.findOne({ email: info.email }).then(user => {
         // Check if the email exists in the db
         if (!user) {
