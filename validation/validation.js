@@ -45,6 +45,25 @@ const validateRegister = input => {
     return { errors: errors, valid: isEmpty(errors) };
 };
 
+// Validate the login input info
+const validateLogin = input => {
+    let errors = {};
+
+    if (isEmpty(input.email) || isEmpty(input.pwd)) {
+        errors.empty = "Introduce all the requested login credentials";
+    } else {
+        if (!Validator.isEmail(input.email)) {
+            errors.email = "Invalid email";
+        }
+        if (!Validator.isLength(input.pwd, { min: 6 })) {
+            errors.pwd = "Invalid password";
+        }
+    }
+
+    return { errors: errors, valid: isEmpty(errors) };
+};
+
 module.exports = {
-    validateRegister
+    validateRegister,
+    validateLogin
 };
