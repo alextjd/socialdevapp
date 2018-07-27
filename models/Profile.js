@@ -1,6 +1,6 @@
 // Define objects and map them to MongoDB
 const mongoose = require("mongoose");
-const Schema = mongose.Schema;
+const Schema = mongoose.Schema;
 
 // Create Schema
 const ProfileSchema = new Schema({
@@ -8,7 +8,7 @@ const ProfileSchema = new Schema({
         // Id of a user object
         type: Schema.Types.ObjectId,
         // Reference to the collection of that id
-        ref: users
+        ref: "users"
     },
     handle: {
         type: String,
