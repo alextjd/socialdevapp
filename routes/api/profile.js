@@ -65,10 +65,9 @@ router.post(
         if (req.body.education) profileData.education = req.body.education;
         // Set individually the social networks
         profileData.social = {};
-        if (req.body.social.twitter)
-            profileData.social.twitter = req.body.social.twitter;
-        if (req.body.social.instagram)
-            profileData.social.instagram = req.body.social.instagram;
+        if (req.body.twitter) profileData.social.twitter = req.body.twitter;
+        if (req.body.instagram)
+            profileData.social.instagram = req.body.instagram;
 
         Profile.findOne({ user: req.user.id })
             .then(profile => {

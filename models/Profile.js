@@ -60,7 +60,7 @@ const ProfileSchema = new Schema({
                 type: Date
             },
             // Check if still in the company
-            curret: {
+            current: {
                 type: Boolean,
                 default: false
             },
@@ -94,7 +94,7 @@ const ProfileSchema = new Schema({
                 type: Date
             },
             // Still in the school
-            curret: {
+            current: {
                 type: Boolean,
                 default: false
             },
