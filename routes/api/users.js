@@ -20,15 +20,15 @@ const User = require("../../models/User");
 // @access    Public
 router.post("/register", (req, res) => {
     const info = Object.assign({}, req.body);
+    // Validate the input info
+    const input_check = validation.validateRegister(info);
+    if (!input_check.valid) {
+        return res.status(400).json(input_check.errors);
+    }
     User.findOne({ email: info.email }).then(user => {
         // Check if email is already taken
         if (user) {
             return res.status(400).json({ msg: "This email is already taken" });
-        }
-        // Validate the input info
-        const input_check = validation.validateRegister(info);
-        if (!input_check.valid) {
-            return res.status(400).json(input_check.errors);
         }
         // Prepare the new user
         const new_user = new User({
@@ -59,9 +59,8 @@ router.post("/register", (req, res) => {
 // @desc      Login for registered users
 // @access    Public
 router.post("/login", (req, res) => {
-    const email = req.body.email;
-    const pwd = req.body.pwd;
-    User.findOne({ email: email }).then(user => {
+    const info = req.body;
+    User.findOne({ email: info.email }).then(user => {
         // Check if the email exists in the db
         if (!user) {
             return res
@@ -69,7 +68,7 @@ router.post("/login", (req, res) => {
                 .json({ msg: "No account linked to the email provided" });
         }
         // Check the passwords
-        bcryp.compare(pwd, user.pwd, (err, match) => {
+        bcryp.compare(info.pwd, user.pwd, (err, match) => {
             if (err) throw err;
             if (match) {
                 // Prepare the payload
