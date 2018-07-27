@@ -106,6 +106,7 @@ router.get(
     // Private routes need the passport.authenticate() method
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
+        // Req.user contains the authenticated user
         res.json(req.user);
     }
 );
