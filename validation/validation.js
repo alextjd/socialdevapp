@@ -2,10 +2,10 @@ const Validator = require("validator");
 
 // Check for empty values
 const isEmpty = value => {
-    if (typeof value === "string") {
-        return value.length === 0;
-    } else if (value === undefined || value === null) {
+    if (value === undefined || value === null) {
         return true;
+    } else if (typeof value === "string") {
+        return value.length === 0;
     } else if (Array.isArray(value) === true && value !== null) {
         return value.length === 0;
     } else if (typeof value === "object" && value !== null) {
@@ -44,7 +44,7 @@ const validateRegister = input => {
 
     return {
         errors: errors,
-        empty: isEmpty(errors)
+        valid: !isEmpty(errors)
     };
 };
 
