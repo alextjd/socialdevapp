@@ -73,6 +73,7 @@ router.post(
             .then(profile => {
                 // Update the user's profile
                 if (profile) {
+                    // findOneAndUpdate(filter, new info, return new info?)
                     Profile.findOneAndUpdate(
                         { user: req.user.id },
                         profileData,
