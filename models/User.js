@@ -4,25 +4,25 @@ const Schema = moongoose.Schema;
 
 // Create Schema
 const UserSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  },
-  pwd: {
-    type: String,
-    required: true
-  },
-  img: {
-    type: String
-  },
-  date: {
-    type: Date,
-    defaul: Date.now
-  }
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    pwd: {
+        type: String,
+        required: true
+    },
+    img: {
+        type: String
+    },
+    date: {
+        type: Date,
+        defaul: Date.now
+    }
 });
 
 module.exports = moongoose.model("users", UserSchema);

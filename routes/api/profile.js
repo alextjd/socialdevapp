@@ -5,7 +5,7 @@ const router = express.Router();
 // @desc      Tests the post route
 // @access    Public
 router.get("/test", (req, res) => {
-  res.json({ msg: "All went fine in PROFILE." });
+    res.json({ msg: "All went fine in PROFILE." });
 });
 
 module.exports = router;

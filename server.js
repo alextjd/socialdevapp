@@ -19,13 +19,13 @@ app.use(bodyParser.json());
 
 // Connect with MongoDB
 moongoose
-  .connect(db)
-  .then(() => {
-    console.log("MongoDB connected");
-  })
-  .catch(err => {
-    console.log(err);
-  });
+    .connect(db)
+    .then(() => {
+        console.log("MongoDB connected");
+    })
+    .catch(err => {
+        console.log(err);
+    });
 
 // Passport middleware for authentication
 app.use(passport.initialize());
@@ -44,5 +44,5 @@ const port = process.env.PORT || 5000;
 
 // Set the app to run on the port
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+    console.log(`Server running on port ${port}`);
 });
