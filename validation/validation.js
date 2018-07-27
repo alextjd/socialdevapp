@@ -44,7 +44,7 @@ const validateRegister = input => {
 
     return {
         errors: errors,
-        valid: !isEmpty(errors)
+        valid: isEmpty(errors)
     };
 };
 
