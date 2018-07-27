@@ -6,6 +6,9 @@ const passport = require("passport");
 // Get the secret key for the token
 const secret = require("../../config/keys").secret;
 
+// Load the validation functions
+const validation = require("../../validation/validation");
+
 // Load the express router
 const router = express.Router();
 
@@ -22,15 +25,10 @@ router.post("/register", (req, res) => {
         if (user) {
             return res.status(400).json({ msg: "This email is already taken" });
         }
-        // Check for invalid request info
-        if (info.name.length === 0) {
-            return res.status(400).json({ msg: "Invalid name provided" });
-        }
-        if (info.email.indexOf("@") === -1 || info.email.length === 0) {
-            return res.status(400).json({ msg: "Invalid email provided" });
-        }
-        if (info.pwd.length < 6) {
-            return res.status(400).json({ msg: "Invalid password provided" });
+        // Validate the input info
+        const input_check = validation.validateRegister(info);
+        if (!input_check.valid) {
+            return res.status(400).json(input_check.errors);
         }
         // Prepare the new user
         const new_user = new User({
