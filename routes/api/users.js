@@ -103,6 +103,7 @@ router.post("/login", (req, res) => {
 // @access    Private
 router.get(
     "/current",
+    // Private routes need the passport.authenticate() method
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         res.json(req.user);
