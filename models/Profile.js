@@ -1,6 +1,6 @@
 // Define objects and map them to MongoDB
 const mongoose = require("mongoose");
-const Schema = moongose.Schema;
+const Schema = mongose.Schema;
 
 // Create Schema
 const ProfileSchema = new Schema({
