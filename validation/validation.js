@@ -30,7 +30,7 @@ const validateRegister = input => {
             errors.name = "Name must be between 3 and 17 characters long";
         }
         if (!Validator.isEmail(input.email)) {
-            errors.name = "Please choose a valid email";
+            errors.email = "Please choose a valid email";
         }
         if (
             !Validator.isLength(input.pwd, { min: 6 }) ||
@@ -42,10 +42,7 @@ const validateRegister = input => {
         }
     }
 
-    return {
-        errors: errors,
-        valid: isEmpty(errors)
-    };
+    return { errors: errors, valid: isEmpty(errors) };
 };
 
 module.exports = {
